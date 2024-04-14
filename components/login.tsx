@@ -64,8 +64,10 @@ export default function LoginButton() {
 
       const streamData = await createStream({ name:streamId});
       const streamUrl = getStreamUrl(streamData.streamKey);
-      const playbackId = getPlayback(streamData.playbackId);
-      console.log('boradcast ',streamUrl, 'watch ',playbackId)
+      const playbackId = getPlayback(streamData.playbackId).split("=");
+      const playbackId1=playbackId[1];
+      console.log('boradcast ',streamUrl, 'watch ',playbackId1)
+
       setBroadcast(streamUrl)
 
       setTimeout(async () => {
@@ -79,7 +81,7 @@ export default function LoginButton() {
         console.log(tableName);
       const { meta: insert } = await db
         .prepare(`INSERT INTO ${tableName} (creator,address,title, streamId, metadata, price) VALUES (?, ?, ?, ?, ?, ?)`)
-        .bind(`${user?.id.split(":").at(2)}`,`0x7f2377647cff7f30ec8fd3af8353c8a0ab1a91c0`,title ,playbackId, metadata, price)
+        .bind(`${user?.id.split(":").at(2)}`,`0x7f2377647cff7f30ec8fd3af8353c8a0ab1a91c0`,title ,playbackId1, metadata, price)
         // ${user?.wallet?.address}
         .run();
       await insert.txn?.wait();
