@@ -12,7 +12,7 @@ export default function Home({ params }: { params: { id: string } }) {
             </p>
           </div>
           <p className="mt-4 max-w-lg mx-auto">
-            Share this link on Farcaster and only payers will be 
+            Share this link on Farcaster and only payed users will be 
             able to access your livestream video.
           </p>
         </div>

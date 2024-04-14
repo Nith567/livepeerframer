@@ -17,7 +17,7 @@ export default function LoginButton() {
   const {wallets} = useWallets();
   const [broadcast, setBroadcast] = useState('');
   const [title, setTitle] = useState('');
-  const [contract, setContract] = useState('');
+  // const [contract, setContract] = useState('');
   const [table, setTableName] = useState('');
   const [streamId, setStreamId] = useState('');
   const [metadata, setMetadata] = useState('');
@@ -26,20 +26,20 @@ export default function LoginButton() {
   const router = useRouter()
 
 
-  const deploy=async()=>{
-    const wallet = wallets[0];
-    const embeddedWallet = wallets.find((wallet) => wallet.walletClientType === 'privy');
-    if (!embeddedWallet) {
-      console.error('Embedded wallet not found');
-      return;
-    }
-    embeddedWallet.switchChain(84532)
-      const providers = await embeddedWallet.getEthersProvider();
-      const signer = providers.getSigner();
-    let contract=  await deployContract(signer, 'haivng', price);
-    setContract(contract.address);
-    console.log(contract.address,contract)
-  }
+  // const deploy=async()=>{
+  //   const wallet = wallets[0];
+  //   const embeddedWallet = wallets.find((wallet) => wallet.walletClientType === 'privy');
+  //   if (!embeddedWallet) {
+  //     console.error('Embedded wallet not found');
+  //     return;
+  //   }
+  //   embeddedWallet.switchChain(84532)
+  //     const providers = await embeddedWallet.getEthersProvider();
+  //     const signer = providers.getSigner();
+  //   let contract=  await deployContract(signer, 'haivng', price);
+  //   setContract(contract.address);
+  //   console.log(contract.address,contract)
+  // }
   const copyToClipboard = async () => {
     try {
       await navigator.clipboard.writeText(broadcast);
@@ -66,25 +66,25 @@ export default function LoginButton() {
       const streamData = await createStream({ name:streamId});
       const streamUrl = getStreamUrl(streamData.streamKey);
       const playbackId = getPlayback(streamData.playbackId);
-      console.log('so bite, ',streamUrl, 'also ',playbackId)
+      console.log('boradcast ',streamUrl, 'watch ',playbackId)
       setBroadcast(streamUrl)
 
       const { meta: create } = await db
-        .prepare(`CREATE TABLE ${prefix} (id integer primary key,creator text,address text,contract text, title text, streamId text,metadata text,price integer);`)
+        .prepare(`CREATE TABLE ${prefix} (id integer primary key,creator text,address text,title text, streamId text,metadata text,price integer);`)
         .run();
         await create.txn?.wait();
         let tableName = create.txn?.names[0]
         console.log(tableName);
       const { meta: insert } = await db
-        .prepare(`INSERT INTO ${tableName} (creator,address,contract, title, streamId, metadata, price) VALUES (?, ?, ?, ?, ?, ?, ?)`)
-        .bind(`${user?.id.split(":").at(2)}`,`0x7f2377647cff7f30ec8fd3af8353c8a0ab1a91c0`,`${contract}`,title ,playbackId, metadata, price)
+        .prepare(`INSERT INTO ${tableName} (creator,address,title, streamId, metadata, price) VALUES (?, ?, ?, ?, ?, ?)`)
+        .bind(`${user?.id.split(":").at(2)}`,`0x7f2377647cff7f30ec8fd3af8353c8a0ab1a91c0`,title ,playbackId, metadata, price)
         // ${user?.wallet?.address}
         .run();
       await insert.txn?.wait();
       console.log(insert.txn?.names)
       console.log('Data inserted successfully');
   let p=user?.id.split(":").at(2)
-  router.push(`/watch/${tableName}-${contract}`)
+  router.push(`/watch/${tableName}-${user?.id.split(":").at(2)}`)
     } 
     catch (error) {
       console.error('singl error  ', error);
@@ -101,7 +101,7 @@ export default function LoginButton() {
     )}
 
 <button className='m-2 p-3 bg-red-600 inline-block  hover:bg-orange-800 text-white font-bold py-2 px-4 rounded-lg shadow-md' disabled={disablelogout} onClick={logout}>LOGOUT</button>
-<button className='m-2 p-3 bg-red-600 inline-block  hover:bg-orange-800 text-white font-bold py-2 px-4 rounded-lg shadow-md'  onClick={deploy}>deploy</button>
+{/* <button className='m-2 p-3 bg-red-600 inline-block  hover:bg-orange-800 text-white font-bold py-2 px-4 rounded-lg shadow-md'  onClick={deploy}>deploy</button> */}
 
 
     {ready && authenticated && (
@@ -113,7 +113,7 @@ export default function LoginButton() {
                <div>Your Stream: {broadcast}
                
                <button onClick={copyToClipboard}>
-               <FaCopy /> Copy to Clipboard
+               <FaCopy />
              </button>
              </div>
                }

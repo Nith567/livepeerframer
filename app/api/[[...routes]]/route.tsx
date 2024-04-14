@@ -18,76 +18,12 @@ const app = new Frog({
 
 const usdcContractAddress = '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913'; 
 
-// app.frame('/play/:ids',async(c)=>{
-//   const id = c.req.param('ids')
-//   const ids = id.split('-')
-//   const tableName= ids[0]
-//   const contractAddress = ids[1]
-//   const filteredData = await checkApi(tableName, contractAddress);
-// let owner= filteredData[0].address;
-//   return c.res({
-//     action: `/finish/${filteredData[0].streamId}`,
-//     image: (
-//       <div
-//       style={{
-//         display: 'flex',
-//         height: '100%',
-//         width: '100%',
-//         alignItems: 'center',
-//         justifyContent: 'center',
-//         flexDirection: 'column',
-//         backgroundImage: 'linear-gradient(to bottom, #dbf4ff, #fff1f1)',
-//         fontSize: 80,
-//         fontWeight: 700,
-//         textAlign: 'center',
-//       }}
-//     >
-//       <p
-//         style={{
-//           backgroundImage:
-//             'linear-gradient(90deg, rgb(0, 124, 240), rgb(0, 223, 216))',
-//           backgroundClip: 'text',
-//           color: 'transparent',
-//           fontSize: 80,
-//           fontWeight: 700,
-//           margin: 0,
-//         }}
-//       >
-//         {filteredData[0].title}
-//         {filteredData[0].metadata}
-//       </p>
-//       {filteredData && (
-//         <p
-//           style={{
-//             backgroundImage:
-//               'linear-gradient(90deg, rgb(121, 40, 202), rgb(255, 0, 128))',
-//             backgroundClip: 'text',
-//             color: 'transparent',
-//             fontSize: 80,
-//             fontWeight: 700,
-//             margin: 0,
-//             marginTop: 20,
-//           }}
-//         >
-//           {filteredData[0].steamId} 
-//           <br/>
-//           ${filteredData[0].price}
-//         </p>
-//       )}
-//     </div>
-//     ),
-//     intents: [
-// <Button.Transaction key="transaction" target={`/send-etherss/${owner}/${filteredData[0].price}`}>Sends ${filteredData[0].price}</Button.Transaction>
-// ]
-//   })
-// })
-
 app.frame('/play/:ids', async (c) => {
   const id = c.req.param('ids');
   const ids = id.split('-');
   const tableName = ids[0];
-  const contractAddress = ids[1];
-  const filteredData = await checkApi(tableName, contractAddress);
+  const creatorAddress = ids[1];
+  const filteredData = await checkApi(tableName, creatorAddress);
   let owner = filteredData[0].address;
   return c.res({
     action: `/finish/${filteredData[0].streamId}`,
@@ -117,7 +53,8 @@ app.frame('/play/:ids', async (c) => {
             margin: 0,
           }}
         >
-          {filteredData[0].title}
+          {filteredData[0].title}{' '}
+          {' '}
           {filteredData[0].metadata}
         </p>
         {filteredData && (
