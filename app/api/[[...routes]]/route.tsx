@@ -70,8 +70,6 @@ app.frame('/play/:ids', async (c) => {
               marginTop: 20,
             }}
           >
-            {filteredData[0].streamId} 
-            <br/>
             ${filteredData[0].price}
           </p>
         )}
@@ -118,7 +116,6 @@ app.frame('/finish/:streamId', (c) => {
           backgroundColor: 'blue', 
         }}
       >
-          
           Transaction ID: {transactionId} 
       </div>
     ),

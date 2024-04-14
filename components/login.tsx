@@ -61,14 +61,16 @@ export default function LoginButton() {
     try {
       const providers = await embeddedWallet.getEthersProvider();
       const signer = providers.getSigner();
-      const prefix = "framesfliv";
-            const db = new Database({ signer});
+
       const streamData = await createStream({ name:streamId});
       const streamUrl = getStreamUrl(streamData.streamKey);
       const playbackId = getPlayback(streamData.playbackId);
       console.log('boradcast ',streamUrl, 'watch ',playbackId)
       setBroadcast(streamUrl)
 
+      setTimeout(async () => {
+        const prefix = "livframe";
+        const db = new Database({ signer});
       const { meta: create } = await db
         .prepare(`CREATE TABLE ${prefix} (id integer primary key,creator text,address text,title text, streamId text,metadata text,price integer);`)
         .run();
@@ -85,6 +87,8 @@ export default function LoginButton() {
       console.log('Data inserted successfully');
   let p=user?.id.split(":").at(2)
   router.push(`/watch/${tableName}-${user?.id.split(":").at(2)}`)
+}, 5000);
+
     } 
     catch (error) {
       console.error('singl error  ', error);
