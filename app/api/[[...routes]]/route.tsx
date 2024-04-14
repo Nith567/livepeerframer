@@ -106,18 +106,33 @@ app.frame('/finish/:streamId', (c) => {
     image: (
       <div
         style={{
-          color: 'transparent',
-          fontSize: 80,
-          fontWeight: 700,
-          margin: 0,
-          marginTop: 20,
+          color: 'white',
+          display: 'flex',  
+          flexDirection: 'column', 
+          justifyItems: 'center',
+          alignItems: 'center',
+          fontSize: 60,
         }}
       >
-          Transaction ID: {transactionId?.slice(0,3)}...{transactionId?.slice(-4)} 
+        {transactionId
+            ? `tnx : ${transactionId.slice(0, 6)}...${transactionId.slice(-6)}`
+            : 'Transaction ...'}
       </div>
     ),
     action:`/watch/${streamId}`,
-    intents:[<Button key='video' value="transactionId">Watch </Button>]
+    // intents:[<Button key='video' value="transactionId">Watch </Button>]
+    intents: transactionId
+    ? [
+        <Button.Link
+         key='hash' href={`https://base-sepolia.blockscout.com/tx/${transactionId}`}
+        >
+          View on Block Explorer
+        </Button.Link>,
+        <Button key='video' value="transactionId">Watch </Button>
+      ]
+    : [
+
+      ],
   })
 })
 
@@ -141,7 +156,7 @@ app.frame('/watch/:streamId',async (c)=>{
       </div>
       ),
       intents: [
-        <Button.Link key='video' href={`https://lvpr.tv?v=${streamId}`}>Watch</Button.Link>
+        <Button.Link key='watch' href={`https://lvpr.tv?v=${streamId}`}>Watch</Button.Link>
       ]
   })
 }
