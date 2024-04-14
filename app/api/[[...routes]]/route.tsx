@@ -5,7 +5,6 @@ import { handle } from 'frog/vercel'
 import { neynar } from 'frog/hubs'
 import { erc20Abi, parseUnits } from 'viem';
 import { ethers } from 'ethers';
-import { FrameRequest, getFrameHtmlResponse, getFrameMessage } from '@coinbase/onchainkit'
 import axios from 'axios';
 import { checkApi } from '@/lib/checkdata';
 
