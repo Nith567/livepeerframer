@@ -112,7 +112,7 @@ app.frame('/finish/:streamId', (c) => {
           fontWeight: 700,
           margin: 0,
           marginTop: 20,
-          backgroundImage:
+          background:
           'linear-gradient(90deg, rgb(121, 40, 202), rgb(255, 0, 128))',
         }}
       >
@@ -120,7 +120,7 @@ app.frame('/finish/:streamId', (c) => {
       </div>
     ),
     action:`/watch/${streamId}`,
-    intents:[<Button key='video' value="transactionId">View </Button>]
+    intents:[<Button key='video' value="transactionId">Watch </Button>]
   })
 })
 
