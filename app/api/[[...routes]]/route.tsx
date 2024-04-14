@@ -106,14 +106,11 @@ app.frame('/finish/:streamId', (c) => {
     image: (
       <div
         style={{
-          backgroundClip: 'text',
           color: 'transparent',
           fontSize: 80,
           fontWeight: 700,
           margin: 0,
           marginTop: 20,
-          background:
-          'linear-gradient(90deg, rgb(121, 40, 202), rgb(255, 0, 128))',
         }}
       >
           Transaction ID: {transactionId?.slice(0,3)}...{transactionId?.slice(-4)} 
