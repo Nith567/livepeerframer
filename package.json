@@ -1,5 +1,5 @@
 {
-  "name": "frame-master",
+  "name": "livepeer-framer",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -11,8 +11,6 @@
   },
   "dependencies": {
     "@airstack/frog": "^0.0.8",
-    "@coinbase/onchainkit": "0.4.3",
-    "@farcaster/hub-nodejs": "^0.10.23",
     "@livepeer/react": "^4.1.11",
     "@nextui-org/react": "^2.2.10",
     "@privy-io/react-auth": "^1.59.5",
