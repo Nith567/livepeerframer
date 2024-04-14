@@ -106,21 +106,21 @@ app.frame('/finish/:streamId', (c) => {
     image: (
       <div
         style={{
-          color: 'white',
-          display: 'flex',  
-          flexDirection: 'column', 
-          justifyItems: 'center',
-          alignItems: 'center',
-          fontSize: 60,
-          backgroundColor: 'blue', 
+          backgroundClip: 'text',
+          color: 'transparent',
+          fontSize: 80,
+          fontWeight: 700,
+          margin: 0,
+          marginTop: 20,
+          backgroundImage:
+          'linear-gradient(90deg, rgb(121, 40, 202), rgb(255, 0, 128))',
         }}
       >
-          Transaction ID: {transactionId} 
+          Transaction ID: {transactionId?.slice(0,3)}...{transactionId?.slice(-4)} 
       </div>
     ),
     action:`/watch/${streamId}`,
     intents:[<Button key='video' value="transactionId">View </Button>]
-    // intents: [<Button.Link key='video' href={`${streamId}`}>Watch</Button.Link>]
   })
 })
 
@@ -144,7 +144,7 @@ app.frame('/watch/:streamId',async (c)=>{
       </div>
       ),
       intents: [
-        <Button.Link key='video' href={`${streamId}`}>Watch</Button.Link>
+        <Button.Link key='video' href={`https://lvpr.tv?v=${streamId}`}>Watch</Button.Link>
       ]
   })
 }
