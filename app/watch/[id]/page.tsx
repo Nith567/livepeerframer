@@ -1,3 +1,4 @@
+'use client'
 import { FaCopy } from 'react-icons/fa';
 export default function Home({ params }: { params: { id: string } }) {
 
