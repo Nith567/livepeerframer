@@ -107,11 +107,8 @@ export default function LoginButton() {
     )}
 
 
-
-
     {ready && authenticated && (
         <div>
-          <button className='m-2 p-3 bg-red-600 inline-block  hover:bg-orange-800 text-white font-bold py-2 px-4 rounded-lg shadow-md' disabled={disablelogout} onClick={logout}>LOGOUT</button>
    {user?.wallet?.address}
       <li>Google: {user?.google ? user?.google.email : 'None'}</li>
 
