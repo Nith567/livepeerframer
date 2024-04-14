@@ -78,8 +78,8 @@ app.frame('/play/:ids', async (c) => {
       <Button.Transaction key="transaction" target={`/send-etherss/${owner}/${filteredData[0].price}`}>Send ${filteredData[0].price}</Button.Transaction>
     ]
   });
-}).transaction('/send-etherss/:owner/:price', (c) => {
-
+})
+app.transaction('/send-etherss/:owner/:price', async(c) => {
 const owner  = c.req.param('owner');
 const price  = c.req.param('price');
 console.log('owners , ' , owner,price);
@@ -118,35 +118,37 @@ app.frame('/finish/:streamId', (c) => {
           Transaction ID: {transactionId} 
       </div>
     ),
-    intents: [<Button.Link key='video' href={`${streamId}`}>Watch</Button.Link>]
+    action:`/watch/${streamId}`,
+    intents:[<Button key='video' value="transactionId">View </Button>]
+    // intents: [<Button.Link key='video' href={`${streamId}`}>Watch</Button.Link>]
   })
 })
 
-// app.frame('/watch/:streamId',async (c)=>{
-//   const streamId = c.req.param('streamId');
-//   return c.res({
-//     image: (
-//       <div 
-//         style={{
-//           color: 'white',
-//           display: 'flex',
-//           justifyItems: 'center',
-//           alignItems: 'center',
-//           textAlign: 'center',
-//           width: '100%',
-//           height: '100%',
-//           fontSize: 90,
-//         }}
-//       >
-//       Watch it out now!
-//       </div>
-//       ),
-//       intents: [
-//         <Button.Link key='video' href={`${streamId}`}>Watch</Button.Link>
-//       ]
-//   })
-// }
+app.frame('/watch/:streamId',async (c)=>{
+  const streamId = c.req.param('streamId');
+  return c.res({
+    image: (
+      <div 
+        style={{
+          color: 'white',
+          display: 'flex',
+          justifyItems: 'center',
+          alignItems: 'center',
+          textAlign: 'center',
+          width: '100%',
+          height: '100%',
+          fontSize: 90,
+        }}
+      >
+      Watch it out now!
+      </div>
+      ),
+      intents: [
+        <Button.Link key='video' href={`${streamId}`}>Watch</Button.Link>
+      ]
+  })
+}
 
-// )
+)
 export const GET = handle(app)
 export const POST = handle(app)
