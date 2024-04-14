@@ -3,7 +3,6 @@
 import {PrivyProvider} from '@privy-io/react-auth';
 import {defineChain} from 'viem';
 import {sepolia,baseSepolia, } from 'viem/chains';
-// import { base, baseSepolia, localhost } from 'wagmi/chains';
 export const myCustomChain = defineChain({
   id: 84532, 
   name: 'Base Sepolia',
