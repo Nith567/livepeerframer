@@ -124,7 +124,7 @@ app.frame('/finish/:streamId', (c) => {
     intents: transactionId
     ? [
         <Button.Link
-         key='hash' href={`https://base-sepolia.blockscout.com/tx/${transactionId}`}
+         key='hash' href={`https://basescan.org/tx/${transactionId}`}
         >
           View on Block Explorer
         </Button.Link>,
