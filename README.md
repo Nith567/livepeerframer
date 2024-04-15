@@ -1,7 +1,9 @@
-<img width="593" alt="Screenshot 2024-03-24 at 8 48 16 PM" src="https://github.com/Nith567/FramerMaster/assets/91722732/9abbaa97-6d31-4132-ac26-bfb90bf6b2e8">
 
 
-FRAMER MASTER- the only platform where creators make videos, livestream reachout to their followers(users) by just copy paste with a frame link,a custom price and all metadata with a frame.
+Livepeer Framer enables anyone to livestream their videos using just one frame link with Warpcast as a cast, monetizing videos through Livepeer as streaming video service  ,with transactions occurring right within the frame (on the base chain)
+-livepeer as streaming video platform,privy (to onboard new users),tableland database
+
+Demo video: https://www.loom.com/share/7bccb4704f3f472b999647775da6dd44?sid=cc6c6269-1e1a-4935-9c5f-3aa3b77017ee
 ```
 TechStack:
 livepeer for livestream videos
